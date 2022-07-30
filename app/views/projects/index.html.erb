@@ -1,0 +1,53 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-50 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center pb-8">
+    <h1 class="mx-auto font-bold text-4xl" >Proyectos</h1>
+  </div>  
+  <table id="projects" class="mx-auto">
+  <tfoot>
+  <tr>  
+    <td colspan="3">
+    <div class="mt-8">
+    <%= link_to 'Nuevo proyecto', new_project_path, class: "inline rounded-lg py-1 px-2 bg-green-500 text-black block font-medium" %>
+  
+    </div>
+</td>
+</tr>
+</tfoot>
+<tbody> 
+<% @projects.each do |project| %>
+  <tr class="<%= cycle('bg-green-50', 'bg-white') %>">
+  <td class="px-2 py-3">
+  <%= image_tag(project.image_url, class: 'w-40') %>
+  </td>
+  <td>
+  <h1 class="text-xl font-bold mb-3"><%= project.title %></h1> <p>
+  <%= truncate(strip_tags(project.description), length: 80) %>
+  </p> </td>
+  <td class="px-3"> <ul>
+  <li>
+  <%= link_to 'Mostrar', project, class: 'hover:underline' %>
+</li>
+<li>
+<%= link_to 'Editar', edit_project_path(project),
+class: 'hover:underline' %>
+</li>
+<li>
+<%= link_to 'Eliminar', project, class: 'hover:underline',
+    data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+      </li>
+    </ul>
+    </td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+  </div>
+
+
+
+
+  

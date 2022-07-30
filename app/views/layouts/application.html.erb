@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<title>Proyectos de Dev Soft  & Virtualización de Cursos </title>
+<meta name="viewport" content="width=device-width,initial-scale=1"> 
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+</head>
+<body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<% if user_signed_in? %>
+  <p>Ha ingresado como: <%= current_user.email %></p>
+  <%= link_to current_user.email, edit_user_registration_path %>
+  <%= link_to "Salir", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Entrar", new_user_session_path, data: {'turbo-method': :delete} %>
+  <%= link_to "Crear cuenta", new_user_registration_path %>
+<% end %>
+<%= yield %>
+
+
+<header class="bg-green-300">
+<%= image_tag 'juan.png', alt: 'Proyectos Dev' %>
+<h1><%= @page_title %></h1> 
+</header>
+<section class="flex">
+<nav class="bg-green-300 p-6">
+<ul class="text-white-300 leading-8">
+<li><a href="/">Principal</a></li>
+<li><a href="/projects/new">Agregar proyectos</a></li> 
+<li><a href="/projects/">Imprimir proyectos</a></li>
+
+</ul> </nav>
+<main class="container mx-auto mt-4 px-5 flex"> <%= yield %>
+      </main>
+    </section>
+  </body>
+</html>

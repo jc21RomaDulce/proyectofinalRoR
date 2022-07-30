@@ -1,0 +1,27 @@
+<div id="<%= dom_id project %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Nombre:</strong>
+    <%= project. title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Descripción:</strong>
+    <%= project.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Image url:</strong>
+    <%= project.image_url %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Valor de proyecto:</strong>
+    <%= project.price %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Mostrar este  proyecto", project, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar este  proyecto', edit_project_path(project), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
